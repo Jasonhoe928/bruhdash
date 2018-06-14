@@ -30,8 +30,13 @@ global.bruhdash = {
     return -1;
   },
   // returns the index of the first matching element from right to left
-  lastIndexOf: function () {
-
+  lastIndexOf: function (arr, num) {
+    for(i = arr[arr.length-1]; i > 0; i--) {
+      if(arr[i] === num) {
+      return i;
+      } 
+    }
+    return -1;
   },
 
   // returns an array with all elements except for the last element
