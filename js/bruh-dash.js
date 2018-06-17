@@ -45,39 +45,130 @@ global.bruhdash = {
   },
   
   // returns an array with all falsey values removed
-  compact: function() {
-
+  compact: function(arr) {
+    function truthy(positionValue) {
+      return positionValue;
+    }
+    var filteredArray = arr.filter(truthy)
+    return filteredArray;
+    // for(i = 0; i < arr.length; i++) {
+    //   if(arr[i] === false) {
+    //     arr.splice(i, 1);
+    //   }
+    //   else if(arr[i] === null) {
+    //     arr.splice(i, 1)
+    //   }
+    //   else if(arr[i] === 0) {
+    //     arr.splice(i, 1)
+    //   }
+    //   else if(arr[i] === '') {
+    //     arr.splice(i, 1)
+    //   }
+    //   else if(arr[i] === NaN) {
+    //     arr.splice(i, 1)
+    //     }
+    // }
+    // return arr;
   },
 
   // creates a slice of an array from the start index up to but not including the end index
-  slice: function () {
-
+  slice: function (arr, start, end) {
+    return arr.slice(start, end);
   },
 
   // returns a slice of array with n elements dropped from the beignning
-  drop: function(){
-
+  drop: function(arr, numOfEl){
+    if(numOfEl === undefined) {
+      return arr.slice(1)
+    }
+    else if(typeof numOfEl === 0) {
+        return arr.slice();
+      } else {
+        return arr.slice(numOfEl)
+  }
   },
 
   // returns a slice of array with n elements dropped from the end
-  dropRight: function() {
-
+  dropRight: function(arr, numOfEl) {
+    if(numOfEl === undefined) {
+      return arr.slice(0, -1)
+    }
+    else if(numOfEl === 0) {
+        return arr.slice();
+      } else {
+        return arr.slice(0, -numOfEl)
+  }
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
+    //should return a copy of array with n elements removed from the beginning
+    //should return a copy of only the first element if n is blank
+    //should return an empty array if n equals 0
 
+    //function(arr, n)
+      //if n = 0 
+        //return slice(0, 0)
+      //else if n = undefined
+        //slice(0, 1)
+      //else
+        //slice(0, n)
+
+  
+  take: function (arr, n) {
+    if(n === 0) {
+      return arr.slice(0, 0);
+    }
+    else if(n === undefined) {
+      return arr.slice(0, 1);
+    } else {
+      return arr.slice(0, n);
+    }
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
 
+  //should return a copy of an array with n elements taken from the end
+  //should return a copy of only the last element if n = undefined
+  //should return an empty array if n = 0
+
+  //function(arr, n)
+    //if n = undefined
+      //return slice(-1)
+    //else if n = 0
+      //return arr.slice(0, 0)
+    //else
+      //return arr.slice(-n)
+
+  takeRight: function (arr, n) {
+    if(n === undefined) {
+      return arr.slice(-1);
+    }
+    else if(n === 0) {
+      return arr.slice(0, 0);
+    } else {
+      return arr.slice(-n);
+    }
   },
 
   // fills elements of array with specified value from the start index
   // up to but not including the end index
-  fill: function() {
+  
+  //function should fill elements of array with n value from start of index to second to last index
+  //should fill entire array if no start and end is specified
+  
+  //function(arr, value, start, end)
+  //if start === undefined && end === undefined
+    //return arr.fill(value)
+  //else
+    //return arr.fill(arr, value, 0, arr.length-2)
 
+  fill: function(arr, value, start, end) {
+    if(start === undefined && end === undefined) {
+      return arr.fill(value);
+    }
+    else {
+      return arr.fill(arr, value, start, end)
+    }
   },
 
   // removes all given values from an array
@@ -148,3 +239,6 @@ global.bruhdash = {
     
   }
 };
+
+
+
