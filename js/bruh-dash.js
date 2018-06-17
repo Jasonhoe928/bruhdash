@@ -167,7 +167,7 @@ global.bruhdash = {
       return arr.fill(value);
     }
     else {
-      return arr.fill(arr, value, start, end)
+      return arr.fill(value, start, end)
     }
   },
 
