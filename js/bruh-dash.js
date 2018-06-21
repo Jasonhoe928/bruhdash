@@ -46,11 +46,12 @@ global.bruhdash = {
   
   // returns an array with all falsey values removed
   compact: function(arr) {
-    function truthy(positionValue) {
-      return positionValue;
-    }
-    var filteredArray = arr.filter(truthy)
-    return filteredArray;
+    // function truthy(positionValue) {
+    //   return positionValue;
+    // }
+    // var filteredArray = arr.filter(truthy)
+    // return filteredArray;
+
     // for(i = 0; i < arr.length; i++) {
     //   if(arr[i] === false) {
     //     arr.splice(i, 1);
@@ -69,6 +70,20 @@ global.bruhdash = {
     //     }
     // }
     // return arr;
+
+    var newArr = [];
+    // console.log(arr); //confirms what's in the array
+    for (var i=0; i<arr.length; i++) {
+      if ((arr[i])) {
+        // console.log(arr[i]); //checks for truthys
+        if (newArr.length === 0) {
+          newArr[0] = arr[i]
+        } else {
+          newArr[newArr.length] = arr[i];
+        }
+      }
+    }
+    return newArr;
   },
 
   // creates a slice of an array from the start index up to but not including the end index
@@ -172,13 +187,57 @@ global.bruhdash = {
   },
 
   // removes all given values from an array
-  pull: function () {
 
+  //function should filter all values of n from array
+
+  //function(arr, n)
+    //for loop(i = 0; arr.length; i++)
+      //if(arr[i] === n)
+        //arr.splice(IndexOf(n), 1)
+
+  pull: function (arr, value1, value2) {
+    for (var i = arr.length-1; i >= 0; i--) {
+      if(arr[i] === value1 || arr[i] === value2) {
+        arr.splice(i, 1);
+      }
+    }
+    return arr;
+   
+    // for(i = 0; i < arr.length; i++) {
+    //   if(arr[i] === n) {
+    //     arr.splice(arr[i].indexOf(n), 1)
+    //   }
+    // }
+    // return arr;
   },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
+ 
+ 
+  pullAt: function (arr, arr2) {
+    var newArray = [];
+    for(var i = 0; i < arr.length; i++) {
+     for(var j = 0; j < arr2.length; j++) {
+       if(arr2[j] === i) {
+        newArray.push(arr[i]);
+       }
+      }
+    }
+    return newArray;
+  
+  
+  //no methods:
 
+  // pullAt: function (arr1, arr2) {
+  //     var newArr = [];
+  //         for (var i=0; i<arr1.length; i++) { 
+  //           for (var j=0; j<arr2.length; j++) {
+  //             if (arr2[j] == i) {
+  //                 newArr[newArr.length] = arr1[i];
+  //               }
+  //             }
+  //          }
+  //          return newArr;
   },
 
   // creates an array excluding all the specified values
