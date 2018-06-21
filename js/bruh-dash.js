@@ -241,8 +241,14 @@ global.bruhdash = {
   },
 
   // creates an array excluding all the specified values
-  without: function() {
-
+  without: function(arr, value1, value2) {
+    var newArray = [];
+    for(i = 0; i < arr.length; i++) {
+      if(arr[i] !== value1 && arr[i] !== value2) {
+        newArray.push(arr[i]);
+      }
+    }
+    return newArray;
   },
 
   // returns an array with specified values excluded
