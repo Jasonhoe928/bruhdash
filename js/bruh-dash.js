@@ -252,8 +252,50 @@ global.bruhdash = {
   },
 
   // returns an array with specified values excluded
-  difference: function() {
+  difference: function(arr1, arr2) {
+    var dupArr = [];
+    for (var i=0; i<arr1.length; i++) { // for loop that checks for identical values
+      for (var j=0; j<arr2.length; j++) { // for loop that pushes values into dupArr
+        if (arr1[i] === arr2[j]) {
+          if (dupArr.length === 0) {
+            dupArr[0] = arr1[i];
+          } else {
+            dupArr[dupArr.length] = arr1[i];
+          }
+        }
+      }
+    }
+    // console.log(dupArr); // checking values in dupArr ie. [1,1,2,2]
 
+    var uniqueArr = [];
+    for (var k=0; k<dupArr.length; k++) { // removing duplicates from dupArr and putting unique values in uniqueArr
+      if (dupArr[k] !== dupArr[k+1]) {
+        if (uniqueArr.length === 0) {
+          uniqueArr[0] = dupArr[k];
+        } else {
+          uniqueArr[uniqueArr.length] = dupArr[k];
+        }
+      }
+    }
+    console.log(uniqueArr); // checking values in uniqueArr ie. from [1,1,2,2] to [1,2]
+
+    var shiftArr = [];
+    for (var m=0; m<uniqueArr.length; m++) { // loops through uniqueArr [1,2]
+      for (var n=0; n<arr1.length; n++) { // loops through arr1 [1,2,3]
+        if (uniqueArr[m] === arr1[n]) { // checks to see if values match
+          for (var o=1; o<arr1.length; o++) {
+            if (shiftArr.length === 0) {
+              shiftArr[0] = arr1[o];
+            } else {
+              shiftArr[shiftArr.length] = arr1[o];
+            }
+          }
+          arr1 = shiftArr;
+          shiftArr = [];
+        }
+      }
+    }
+    return arr1;
   },
 
   /*******************
